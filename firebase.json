@@ -6,9 +6,19 @@
     "public": "public",
     "rewrites": [
       {
+        "source": "/api/v1/**",
+        "function": "webApi"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
+    ]
+  },
+  "functions": {
+    "predeploy": [
+      "npm --prefix \"$RESOURCE_DIR\" run lint",
+      "npm --prefix \"$RESOURCE_DIR\" run build"
     ]
   }
 }
