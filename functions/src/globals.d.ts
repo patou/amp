@@ -1,0 +1,1 @@
+declare module '@ampproject/toolbox-cors';
