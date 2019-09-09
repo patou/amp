@@ -10,7 +10,7 @@ jobs:
         key: dependency-cache-{{ checksum "package.json" }}
     - run:
         name: "Dependency ionic & firebase tools"
-        command: npm firebase-tools
+        command: npm add firebase-tools
     - run:
         name: "Install npm dependencies"
         command: npm install
@@ -24,7 +24,7 @@ jobs:
         - functions/node_modules
     - run:
         name: "Firebase deploy"
-        command: firebase deploy --non-interactive --token $FIREBASE_TOKEN
+        command: npx firebase deploy --non-interactive --token $FIREBASE_TOKEN
 workflows:
   version: 2
   build-and-deploy:
