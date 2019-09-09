@@ -9,7 +9,7 @@ jobs:
     - restore_cache:
         key: dependency-cache-{{ checksum "package.json" }}
     - run:
-        name: "Dependency ionic & firebase tools"
+        name: "Dependency firebase tools"
         command: npm add firebase-tools
     - run:
         name: "Install npm dependencies"
@@ -22,6 +22,12 @@ jobs:
         paths:
         - node_modules
         - functions/node_modules
+    - run:
+        name: "Linter cloud function"
+        command: cd functions && npm run lint
+    - run:
+        name: "Build cloud function"
+        command: cd functions && npm run build
     - run:
         name: "Firebase deploy"
         command: npx firebase deploy --non-interactive --token $FIREBASE_TOKEN
