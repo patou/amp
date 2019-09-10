@@ -9,6 +9,7 @@ const main = express();
 main.use('/api/v1', app);
 main.use(ampCors({
     email: true,
+    verbose: true,
   }));
 main.use(bodyParser.json());
 // webApi is your functions name, and you will pass main as 
