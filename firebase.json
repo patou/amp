@@ -10,7 +10,7 @@
         "function": "webApi"
       },
       {
-        "source": "**",
+        "source": "!/@(js|img|node_modules)/**",
         "destination": "/index.html"
       }
     ]
