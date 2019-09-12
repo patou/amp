@@ -15,11 +15,13 @@
   "main": "lib/index.js",
   "dependencies": {
     "@ampproject/toolbox-cors": "^1.0.1",
+    "@types/mailgun-js": "^0.22.3",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "firebase-admin": "^8.0.0",
     "firebase-functions": "^3.1.0",
-    "firebase-functions-helper": "^0.7.3"
+    "firebase-functions-helper": "^0.7.3",
+    "mailgun-js": "^0.22.0"
   },
   "devDependencies": {
     "tslint": "^5.12.0",
