@@ -29,6 +29,9 @@ jobs:
         name: "Build cloud function"
         command: cd functions && npm run build
     - run:
+        name: "Add config"
+        command: npx firebase functions:config:set mailgun.key="$MAILGUN_API"
+    - run:
         name: "Firebase deploy"
         command: npx firebase deploy --non-interactive --token $FIREBASE_TOKEN
 workflows:
