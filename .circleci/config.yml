@@ -32,8 +32,11 @@ jobs:
         name: "Add config"
         command: npx firebase functions:config:set mailgun.key="$MAILGUN_API"
     - run:
+        name: "Firebase deploy functions"
+        command: npx firebase deploy --non-interactive --token $FIREBASE_TOKEN --only functions
+    - run:
         name: "Firebase deploy"
-        command: npx firebase deploy --non-interactive --token $FIREBASE_TOKEN
+        command: npx firebase deploy --non-interactive --token $FIREBASE_TOKEN --only hosting
 workflows:
   version: 2
   build-and-deploy:
