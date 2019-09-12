@@ -5,9 +5,27 @@
 		<title>Firebase &amp; AngularJS • TodoMVC</title>
 		<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
 		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
-		<style>[ng-cloak] { display: none; }</style>
+		<style>[ng-cloak] { display: none; }
+		.email {
+				padding: 16px;
+				border: none;
+				box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+				flex: 1;
+		}
+		.email-form {
+			display: flex;
+
+		}
+		.send-email {
+			padding: 16px;
+			box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+			-webkit-appearance: button;
+    	border: 1px solid rgb(216, 216, 216);
+    	background: initial;
+		}
+		</style>
 	</head>
-	<body>
+	<body ng-controller="TodoCtrl">
 		<section class="todoapp" ng-controller="TodoCtrl">
 			<header class="header">
 				<h1>todos</h1>
@@ -49,6 +67,10 @@
 				<button class="clear-completed" ng-click="clearCompletedTodos()" ng-show="completedCount">Clear completed</button>
 			</footer>
 		</section>
+		<form class="email-form" name="email-form" ng-submit="sendEmail()">
+			<input class="email" placeholder="...@..." ng-model="email">
+			<button class="send-email" type="submit" ng-click="sendEmail()">Send by email</button>
+		</form>
 		<footer class="info">
 			<p>Double-click to edit a todo</p>
 			<p>Credits:

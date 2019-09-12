@@ -6,13 +6,14 @@
  * - retrieves and persists the model via the $firebaseArray service
  * - exposes the model to the template and provides event handlers
  */
-todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, $firebaseArray) {
+todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, $firebaseArray, $http) {
 	var url = 'https://todomvc-devfest.firebaseio.com/todos';
 	var fireRef = new Firebase(url);
 
 	// Bind the todos to the firebase provider.
 	$scope.todos = $firebaseArray(fireRef);
 	$scope.newTodo = '';
+	$scope.email = '';
 	$scope.editedTodo = null;
 
 	$scope.$watch('todos', function () {
@@ -83,6 +84,16 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, $firebaseArr
 		$scope.todos.forEach(function (todo) {
 			todo.completed = allCompleted;
 			$scope.todos.$save(todo);
+		});
+	};
+
+	$scope.sendEmail = function () {
+		if (!$scope.email) {
+			alert('Please enter an email.')
+			return;
+		}
+		$http.get('/sendemail?email='+$scope.email).then(function(response) {
+			alert('You will receive an email')
 		});
 	};
 

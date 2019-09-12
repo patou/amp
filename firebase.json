@@ -10,6 +10,10 @@
         "function": "webApi"
       },
       {
+        "source": "/sendemail",
+        "function": "sendEmail"
+      },
+      {
         "source": "!/@(js|img|node_modules)/**",
         "destination": "/index.html"
       }
