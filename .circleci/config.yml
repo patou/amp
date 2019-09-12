@@ -7,20 +7,20 @@ jobs:
     steps:
     - checkout
     - restore_cache:
-        key: dependency-cache-{{ checksum "package.json" }}
+        key: dependency-cache-{{ checksum "public/package.json" }}-{{ checksum "functions/package.json" }}
     - run:
         name: "Dependency firebase tools"
         command: npm add firebase-tools
     - run:
         name: "Install npm dependencies"
-        command: npm install
+        command: cd public && npm install
     - run:
         name: "Firebase cloud function"
         command: cd functions && npm install
     - save_cache:
-        key: dependency-cache-{{ checksum "package.json" }}
+        key: dependency-cache-{{ checksum "public/package.json" }}-{{ checksum "functions/package.json" }}
         paths:
-        - node_modules
+        - public/node_modules
         - functions/node_modules
     - run:
         name: "Linter cloud function"
