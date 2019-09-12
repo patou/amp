@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as mailgun from 'mailgun-js';
 
-const mg = mailgun({apiKey: functions.config().mailgun.key, domain: 'todo.patou.dev'});
+const mg = mailgun({apiKey: functions.config().mailgun.key, domain: 'todo.patou.dev', host: "api.eu.mailgun.net"});
 
 async function onSendEmail(req: functions.Request, res: functions.Response) {
   const data = {
