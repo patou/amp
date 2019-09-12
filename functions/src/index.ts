@@ -6,12 +6,12 @@ import * as ampCors from '@ampproject/toolbox-cors';
 admin.initializeApp(functions.config().firebase);
 const app = express();
 const main = express();
-main.use('/api/v1', app);
+
 main.use(ampCors({
     email: true,
-    verbose: true,
   }));
 main.use(bodyParser.json());
+main.use('/api/v1', app);
 // webApi is your functions name, and you will pass main as 
 // a parameter
 export const webApi = functions.https.onRequest(main);
