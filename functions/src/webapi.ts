@@ -12,7 +12,7 @@ main.use(ampCors({
   }));
 main.use(bodyParser.json());
 main.use('/api/v1', app);
-// webApi is your functions name, and you will pass main as 
+// webApi is your functions name, and you will pass main as
 // a parameter
 export const webApi = functions.https.onRequest(main);
 
@@ -29,15 +29,27 @@ app.patch('/todos/:todoId', async (req, res) => {
     await db.child(req.params.todoId).set(req.body)
     res.status(204).send({...req.body, id: req.params.todoId});
 })
+app.post('/todos/update', async (req, res) => {
+    await db.child(req.body.todoId).child("title").set(req.body.title)
+    res.status(204).send({...req.body, id: req.params.todoId});
+})
 app.put('/todos/:todoId/complete', async (req, res) => {
     await db.child(req.params.todoId).child('completed').set(true)
+    res.status(204).send(true);
+})
+app.post('/todos/complete', async (req, res) => {
+    await db.child(req.body.todoId).child('completed').set(true)
     res.status(204).send(true);
 })
 app.put('/todos/:todoId/cancel', async (req, res) => {
     await db.child(req.params.todoId).child('completed').set(false)
     res.status(204).send(true);
 })
-// View a todo  
+app.post('/todos/cancel', async (req, res) => {
+    await db.child(req.body.todoId).child('completed').set(false)
+    res.status(204).send(true);
+})
+// View a todo
 app.get('/todos/:todoId', async (req, res) => {
     const todo = await db.child(req.params.todoId).once('value')
     res.status(200).send({...todo.val(), id: todo.key})
@@ -52,8 +64,12 @@ app.get('/todos', async (req, res) => {
     }
     res.status(200).send(todos)
 })
-// Delete a todo 
+// Delete a todo
 app.delete('/todos/:todoId', async (req, res) => {
     await db.child(req.params.todoId).remove()
     res.status(204).send();
+})
+app.post('/todos/delete', async (req, res) => {
+    await db.child(req.body.todoId).remove()
+    res.status(204).send(true);
 })

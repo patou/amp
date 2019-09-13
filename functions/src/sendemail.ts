@@ -7,7 +7,7 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
   const data : mailgun.messages.SendData = {
     from: 'Todo Amp <amp@todo.patou.dev>',
     to: req.query.email,
-    subject: 'AMP-EMAIL',
+    subject: 'Todo AMP',
     text: 'Testing some Mailgun awesomness!',
     'amp-html': `<!doctype html>
     <html ⚡4email>
@@ -17,6 +17,8 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
       <script async src="https://cdn.ampproject.org/v0.js"></script>
       <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
       <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+      <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+      <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
       <style amp-custom>
         /*
          * todomvc.css
@@ -154,6 +156,10 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
           font-size: 24px;
           border-bottom: 1px solid #ededed;
         }
+        .todo-list .todo-img {
+          padding: 10px 0px 0px 0px;
+          font-size: 2em;
+        }
         .todo-list .todo:last-child {
           border-bottom: none;
         }
@@ -277,14 +283,19 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
       </style>
     </head>
     <body>
-
       <div class="container">
         <section class="todoapp">
-            <div><header class="header"><h1>todos</h1><input class="new-todo" placeholder="What needs to be done?" autofocus="true"></header>
+            <div>
+              <header class="header"><h1>todos</h1>
+              <form method="POST" action-xhr="https://todo.patou.dev/api/v1/todos" on="submit-success: todoList.refresh">
+                <input class="new-todo" placeholder="What needs to be done?" name="title" autofocus="true">
+              </form>
+              </header>
           <section class="main">
               <label for="toggle-all"></label>
               <ul class="todo-list">
                 <amp-list
+                  id="todoList"
                   width="auto"
                   height="600"
                   layout="fixed-height"
@@ -296,17 +307,31 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
                 >
                   <div class="view">
                     {{^completed}}
-                    <amp-img src="https://todo.patou.dev/img/check.svg"
-                    width="40"
-                    height="40"
-                    alt="Check"
-                    noloading></amp-img>{{/completed}}{{#completed}}
+                    <form id="{{id}}-check" method="POST" action-xhr="https://todo.patou.dev/api/v1/todos/complete" on="submit-success: todoList.refresh">
+                      <input type="hidden" name="todoId" value="{{id}}"/>
+                      <button type="submit">
+                        <amp-img src="https://todo.patou.dev/img/check.svg"
+                        width="40"
+                        height="40"
+                        alt="Check"
+                        noloading>
+                          <div fallback class="todo-img">☐</div>
+                        </amp-img>
+                      </button>
+                    </form>{{/completed}}{{#completed}}
+                    <form id="{{id}}-check" method="POST" action-xhr="https://todo.patou.dev/api/v1/todos/cancel" on="submit-success: todoList.refresh">
+                      <input type="hidden" name="todoId" value="{{id}}"/>
+                      <button type="submit">
                     <amp-img src="https://todo.patou.dev/img/checked.svg"
                     width="40"
                     height="40"
                     alt="Checked"
-                    noloading></amp-img>
+                    noloading>
+                      <div fallback class="todo-img">☑</div>
+                    </amp-img>
                     {{/completed}}
+                    </button>
+                    </form>
                     <label>{{title}}</label>
                     <button class="destroy"></button>
                   </div>
