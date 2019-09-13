@@ -214,11 +214,40 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
         .todo-list li:hover .destroy {
           display: block;
         }
+        .todo-list .todo .editButton {
+          display: none;
+          position: absolute;
+          top: 0;
+          right: 40px;
+          bottom: 0;
+          width: 40px;
+          height: 40px;
+          margin: auto 0;
+          font-size: 30px;
+          color: #cc9a9a;
+          margin-bottom: 11px;
+          transition: color 0.2s ease-out;
+        }
+        .todo-list li .editButton:hover {
+          color: #af5b5e;
+        }
+        .todo-list li .editButton:after {
+          content: '✏️';
+        }
+        .todo-list li:hover .editButton {
+          display: block;
+        }
         .todo-list li .edit {
           display: none;
         }
         .todo-list li.editing:last-child {
           margin-bottom: -1px;
+        }
+        .todo-list li.editing .edit {
+          display: block;
+        }
+        .todo-list li.editing .view {
+          display: none;
         }
         .footer {
           color: #777;
@@ -287,7 +316,7 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
         <section class="todoapp">
             <div>
               <header class="header"><h1>todos</h1>
-              <form method="POST" action-xhr="https://todo.patou.dev/api/v1/todos" on="submit-success: todoList.refresh">
+              <form method="POST" id="newForm" action-xhr="https://todo.patou.dev/api/v1/todos" on="submit-success: newForm.clear, todoList.refresh">
                 <input class="new-todo" placeholder="What needs to be done?" name="title" autofocus="true">
               </form>
               </header>
@@ -303,6 +332,7 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
                   src="https://todo.patou.dev/api/v1/todos">
                   <template type="amp-mustache">
                 <li
+                  id="{{id}}-todo"
                   class="todo{{#completed}} completed{{/completed}}"
                 >
                   <div class="view">
@@ -319,7 +349,7 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
                         </amp-img>
                       </button>
                     </form>{{/completed}}{{#completed}}
-                    <form id="{{id}}-check" method="POST" action-xhr="https://todo.patou.dev/api/v1/todos/cancel" on="submit-success: todoList.refresh">
+                    <form id="{{id}}-cancel" method="POST" action-xhr="https://todo.patou.dev/api/v1/todos/cancel" on="submit-success: todoList.refresh">
                       <input type="hidden" name="todoId" value="{{id}}"/>
                       <button type="submit">
                     <amp-img src="https://todo.patou.dev/img/checked.svg"
@@ -332,13 +362,18 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
                     {{/completed}}
                     </button>
                     </form>
+
                     <label>{{title}}</label>
-                    <button class="destroy"></button>
+                  <button class="editButton" on="tap: {{id}}-todo.toggleClass('class' = 'editing')"></button>
+                    <form id="{{id}}-destroy" method="POST" action-xhr="https://todo.patou.dev/api/v1/todos/delete" on="submit-success: todoList.refresh">
+                      <input type="hidden" name="todoId" value="{{id}}"/>
+                      <button class="destroy"></button>
+                    </form>
                   </div>
-                  <input
-                    class="edit"
-                    type="text"
-                  >
+                    <form id="{{id}}-edit" method="POST" action-xhr="https://todo.patou.dev/api/v1/todos/update" on="submit: {{id}}-todo.toggleClass('class' = 'editing'); submit-success: {{id}}-todo.toggleClass('class' = 'editing'),todoList.refresh">
+                      <input type="hidden" name="todoId" value="{{id}}"/>
+                      <input type="text" name="newTitle" class="edit"  value="{{title}}"/>
+                    </form>
                 </li>
                   </template>
                </amp-list>
