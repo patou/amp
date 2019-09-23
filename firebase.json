@@ -17,7 +17,14 @@
         "source": "!/@(js|img|node_modules)/**",
         "destination": "/index.html"
       }
-    ]
+    ],
+    "headers": [{
+      "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css|jpg|jpeg|gif|png|svg)",
+      "headers": [ {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      } ]
+    }]
   },
   "functions": {
     "predeploy": [
