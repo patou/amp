@@ -8,7 +8,7 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
     from: 'Todo Amp <amp@todo.patou.dev>',
     to: req.query.email,
     subject: 'Todo AMP',
-    text: 'Testing some Mailgun awesomness!',
+    text: 'Text version of the AMP-Email TodoMVC',
     'amp-html': `<!doctype html>
     <html ⚡4email>
     <head>
@@ -287,6 +287,7 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
         .info p {
           line-height: 1;
         }
+
         .info a {
           color: inherit;
           text-decoration: none;
@@ -315,7 +316,13 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
       <div class="container">
         <section class="todoapp">
             <div>
-              <header class="header"><h1>todos</h1>
+              <header class="header"><h1><amp-img src="https://todo.patou.dev/img/checked.svg"
+                    width="40"
+                    height="40"
+                    alt="Checked"
+                    noloading>
+                      <div fallback class="todo-img">☑</div>
+                    </amp-img>todos</h1>
               <form method="POST" id="newForm" action-xhr="https://todo.patou.dev/api/v1/todos" on="submit-success: newForm.clear, todoList.refresh">
                 <input class="new-todo" placeholder="What needs to be done?" name="title" autofocus="true">
               </form>
@@ -370,9 +377,9 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
                       <button class="destroy"></button>
                     </form>
                   </div>
-                    <form id="{{id}}-edit" method="POST" action-xhr="https://todo.patou.dev/api/v1/todos/update" on="submit: {{id}}-todo.toggleClass('class' = 'editing'); submit-success: {{id}}-todo.toggleClass('class' = 'editing'),todoList.refresh">
+                    <form id="{{id}}-edit" method="POST" action-xhr="https://todo.patou.dev/api/v1/todos/update" on="submit: {{id}}-todo.toggleClass('class' = 'editing'); submit-success: todoList.refresh">
                       <input type="hidden" name="todoId" value="{{id}}"/>
-                      <input type="text" name="newTitle" class="edit"  value="{{title}}"/>
+                      <input type="text" name="newTitle" class="edit" value="{{title}}"/>
                     </form>
                 </li>
                   </template>
@@ -391,6 +398,7 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
       </footer>
     </body>
     </html>
+
     `,
   }
   await mg.messages().send(data);
