@@ -316,7 +316,7 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
       <div class="container">
         <section class="todoapp">
             <div>
-              <header class="header"><h1><amp-img src="https://todo.patou.dev/img/checked.svg"
+              <header class="header"><h1><amp-img src="https://todo.patou.dev/img/checked.png"
                     width="40"
                     height="40"
                     alt="Checked"
@@ -347,7 +347,7 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
                     <form id="{{id}}-check" method="POST" action-xhr="https://todo.patou.dev/api/v1/todos/complete" on="submit-success: todoList.refresh">
                       <input type="hidden" name="todoId" value="{{id}}"/>
                       <button type="submit">
-                        <amp-img src="https://todo.patou.dev/img/check.svg"
+                        <amp-img src="https://todo.patou.dev/img/check.png"
                         width="40"
                         height="40"
                         alt="Check"
@@ -359,7 +359,7 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
                     <form id="{{id}}-cancel" method="POST" action-xhr="https://todo.patou.dev/api/v1/todos/cancel" on="submit-success: todoList.refresh">
                       <input type="hidden" name="todoId" value="{{id}}"/>
                       <button type="submit">
-                    <amp-img src="https://todo.patou.dev/img/checked.svg"
+                    <amp-img src="https://todo.patou.dev/img/checked.png"
                     width="40"
                     height="40"
                     alt="Checked"
