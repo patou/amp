@@ -48,7 +48,7 @@ app.put('/todos/:todoId/complete', async (req, res) => {
 app.post('/todos/complete', async (req, res) => {
     console.log(`complete todo ${req.body.todoId}`)
     await db.child(req.body.todoId).child('completed').set(true)
-    res.status(204).send('ok');
+    res.status(200).send({id: req.body.todoId, completed: true});
 })
 app.put('/todos/:todoId/cancel', async (req, res) => {
     await db.child(req.params.todoId).child('completed').set(false)
@@ -57,7 +57,7 @@ app.put('/todos/:todoId/cancel', async (req, res) => {
 app.post('/todos/cancel', async (req, res) => {
     console.log(`cancel todo ${req.body.todoId}`)
     await db.child(req.body.todoId).child('completed').set(false)
-    res.status(204).send('ok');
+    res.status(200).send({id: req.body.todoId, completed: false});
 })
 // View a todo
 app.get('/todos/:todoId', async (req, res) => {

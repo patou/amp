@@ -352,35 +352,30 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
                         height="40"
                         alt="Check"
                         noloading>
-                          <div fallback class="todo-img">☐</div>
+                          <div fallback class="todo-img"><input type="checkbox"/></div>
                         </amp-img>
                       </button>
-                    </form>{{/completed}}{{#completed}}
+                      <div submit-success template="submit_success_checked">
+                      </div>
+                    </form>
+                    {{/completed}}
+                    {{#completed}}
                     <form id="{{id}}-cancel" method="POST" action-xhr="https://todo.patou.dev/api/v1/todos/cancel" on="submit-success: todoList.refresh">
                       <input type="hidden" name="todoId" value="{{id}}"/>
                       <button type="submit">
-                    <amp-img src="https://todo.patou.dev/img/checked.png"
-                    width="40"
-                    height="40"
-                    alt="Checked"
-                    noloading>
-                      <div fallback class="todo-img">☑</div>
-                    </amp-img>
+                        <amp-img src="https://todo.patou.dev/img/checked.png"
+                        width="40"
+                        height="40"
+                        alt="Checked"
+                        noloading>
+                          <div fallback class="todo-img"><input type="checkbox" checked="checked"/></div>
+                        </amp-img>
+                      </button>
+                      <div submit-success template="submit_success_check">
+                      </div>
+                      </form>
                     {{/completed}}
-                    </button>
-                    </form>
-
                     <label>{{title}}</label>
-                  <button class="editButton" on="tap: {{id}}-todo.toggleClass('class' = 'editing')"></button>
-                    <form id="{{id}}-destroy" method="POST" action-xhr="https://todo.patou.dev/api/v1/todos/delete" on="submit-success: todoList.refresh">
-                      <input type="hidden" name="todoId" value="{{id}}"/>
-                      <button class="destroy"></button>
-                    </form>
-                  </div>
-                    <form id="{{id}}-edit" method="POST" action-xhr="https://todo.patou.dev/api/v1/todos/update" on="submit: {{id}}-todo.toggleClass('class' = 'editing'); submit-success: todoList.refresh">
-                      <input type="hidden" name="todoId" value="{{id}}"/>
-                      <input type="text" name="newTitle" class="edit" value="{{title}}"/>
-                    </form>
                 </li>
                   </template>
                </amp-list>
@@ -396,6 +391,24 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
         <p>Created by <a href="http://github.com/choumx/">choumx</a> and <a href="http://github.com/kristoferbaxter">kristoferbaxter</a></p>
         <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
       </footer>
+      <template type="amp-mustache" id="submit_success_checked">
+        <amp-img src="https://todo.patou.dev/img/checked.png"
+        width="40"
+        height="40"
+        alt="Check"
+        noloading>
+          <div fallback class="todo-img">☐</div>
+        </amp-img>
+      </template>
+      <template type="amp-mustache" id="submit_success_check">
+        <amp-img src="https://todo.patou.dev/img/checked.png"
+        width="40"
+        height="40"
+        alt="Check"
+        noloading>
+          <div fallback class="todo-img">☐</div>
+        </amp-img>
+      </template>
     </body>
     </html>
 
