@@ -310,6 +310,9 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
           max-width: 550px;
           margin: 0 auto;
         }
+        form.amp-form-submit > button {
+          display: none
+        }
       </style>
     </head>
     <body>
@@ -355,8 +358,6 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
                           <div fallback class="todo-img"><input type="checkbox"/></div>
                         </amp-img>
                       </button>
-                      <div submit-success template="submit_success_checked">
-                      </div>
                     </form>
                     {{/completed}}
                     {{#completed}}
@@ -371,8 +372,6 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
                           <div fallback class="todo-img"><input type="checkbox" checked="checked"/></div>
                         </amp-img>
                       </button>
-                      <div submit-success template="submit_success_check">
-                      </div>
                       </form>
                     {{/completed}}
                     <label>{{title}}</label>
@@ -391,24 +390,6 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
         <p>Created by <a href="http://github.com/choumx/">choumx</a> and <a href="http://github.com/kristoferbaxter">kristoferbaxter</a></p>
         <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
       </footer>
-      <template type="amp-mustache" id="submit_success_checked">
-        <amp-img src="https://todo.patou.dev/img/checked.png"
-        width="40"
-        height="40"
-        alt="Check"
-        noloading>
-          <div fallback class="todo-img">☐</div>
-        </amp-img>
-      </template>
-      <template type="amp-mustache" id="submit_success_check">
-        <amp-img src="https://todo.patou.dev/img/checked.png"
-        width="40"
-        height="40"
-        alt="Check"
-        noloading>
-          <div fallback class="todo-img">☐</div>
-        </amp-img>
-      </template>
     </body>
     </html>
 
