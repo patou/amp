@@ -16,6 +16,7 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
     subject: 'Todo AMP',
     text: 'Text version of the AMP-Email TodoMVC',
     'amp-html': ampEmail(type),
+    'o:dkim': true,
   }
   await mg.messages().send(data);
   console.log(`Email sent to ${req.query.email}`);
