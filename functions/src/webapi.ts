@@ -84,3 +84,7 @@ app.post('/todos/delete', async (req, res) => {
     await db.child(req.body.todoId).remove()
     res.status(204).send('ok');
 })
+app.post('/form/vote', async (req, res) => {
+    console.log(req.body);
+    res.status(200).send({...req.body})
+})
