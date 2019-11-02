@@ -1,57 +1,205 @@
 <!doctype html>
 <html lang="fr" ⚡>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width">
-		<link rel="canonical" href="https://todo.patou.dev/amp.html">
-		<title>AMP</title>
-		<script async src="https://cdn.ampproject.org/v0.js"></script>
-		<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-		<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
-		<script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
-		<style amp-custom>
-			form {
-				width: 300px;
-				height: 100px;
-				margin: 25px auto;
-				padding: 50px;
-				border: solid;
-				font-size: medium;
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<link rel="canonical" href="https://todo.patou.dev/amp.html">
+	<title>AMP</title>
+	<script async src="https://cdn.ampproject.org/v0.js"></script>
+	<style amp-boilerplate>
+		body {
+			-webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+			-moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+			-ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+			animation: -amp-start 8s steps(1, end) 0s 1 normal both
+		}
+
+		@-webkit-keyframes -amp-start {
+			from {
+				visibility: hidden
 			}
-			label {
-				display: block;
-				margin: 10px;
+
+			to {
+				visibility: visible
 			}
-			label span {
-				display: inline-block;
-				width: 50px;
+		}
+
+		@-moz-keyframes -amp-start {
+			from {
+				visibility: hidden
 			}
-			input, select {
-				width: 150px;
+
+			to {
+				visibility: visible
 			}
-			button {
-				float: right;
-    		margin: 20px 80px;
+		}
+
+		@-ms-keyframes -amp-start {
+			from {
+				visibility: hidden
+			}
+
+			to {
+				visibility: visible
+			}
+		}
+
+		@-o-keyframes -amp-start {
+			from {
+				visibility: hidden
+			}
+
+			to {
+				visibility: visible
+			}
+		}
+
+		@keyframes -amp-start {
+			from {
+				visibility: hidden
+			}
+
+			to {
+				visibility: visible
+			}
+		}
+	</style><noscript>
+		<style amp-boilerplate>
+			body {
+				-webkit-animation: none;
+				-moz-animation: none;
+				-ms-animation: none;
+				animation: none
 			}
 		</style>
-	</head>
-	<body>
+	</noscript>
+	<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+	<script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+	<script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+	<script async custom-element="amp-lightbox-gallery" src="https://cdn.ampproject.org/v0/amp-lightbox-gallery-0.1.js"></script>
+	<style amp-custom>
+		.form-style-5 {
+			max-width: 600px;
+			padding: 10px 20px;
+			background: #f4f7f8;
+			margin: 10px auto;
+			padding: 20px;
+			background: #f4f7f8;
+			border-radius: 8px;
+			font-family: Georgia, "Times New Roman", Times, serif;
+		}
+
+		.form-style-5 fieldset {
+			border: none;
+		}
+
+		.form-style-5 legend {
+			font-size: 1.4em;
+			margin-bottom: 10px;
+		}
+
+		.form-style-5 label {
+			display: block;
+			margin-bottom: 8px;
+		}
+
+		.form-style-5 input[type="text"],
+		.form-style-5 input[type="date"],
+		.form-style-5 input[type="datetime"],
+		.form-style-5 input[type="email"],
+		.form-style-5 input[type="number"],
+		.form-style-5 input[type="search"],
+		.form-style-5 input[type="time"],
+		.form-style-5 input[type="url"],
+		.form-style-5 textarea,
+		.form-style-5 select {
+			font-family: Georgia, "Times New Roman", Times, serif;
+			background: rgba(255, 255, 255, .1);
+			border: none;
+			border-radius: 4px;
+			font-size: 15px;
+			margin: 0;
+			outline: 0;
+			padding: 10px;
+			width: 100%;
+			box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			background-color: #e8eeef;
+			color: #8a97a0;
+			-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+			box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+			margin-bottom: 30px;
+		}
+
+		.form-style-5 input[type="text"]:focus,
+		.form-style-5 input[type="date"]:focus,
+		.form-style-5 input[type="datetime"]:focus,
+		.form-style-5 input[type="email"]:focus,
+		.form-style-5 input[type="number"]:focus,
+		.form-style-5 input[type="search"]:focus,
+		.form-style-5 input[type="time"]:focus,
+		.form-style-5 input[type="url"]:focus,
+		.form-style-5 textarea:focus,
+		.form-style-5 select:focus {
+			background: #d2d9dd;
+		}
+
+		.form-style-5 select {
+			-webkit-appearance: menulist-button;
+			height: 35px;
+		}
+
+		.form-style-5 .number {
+			background: #1abc9c;
+			color: #fff;
+			height: 30px;
+			width: 30px;
+			display: inline-block;
+			font-size: 0.8em;
+			margin-right: 4px;
+			line-height: 30px;
+			text-align: center;
+			text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+			border-radius: 15px 15px 15px 0px;
+		}
+
+		.form-style-5 input[type="submit"],
+		.form-style-5 input[type="button"] {
+			position: relative;
+			display: block;
+			padding: 19px 39px 18px 39px;
+			color: #FFF;
+			margin: 0 auto;
+			background: #1abc9c;
+			font-size: 18px;
+			text-align: center;
+			font-style: normal;
+			width: 100%;
+			border: 1px solid #16a085;
+			border-width: 1px 1px 3px;
+			margin-bottom: 10px;
+		}
+
+		.form-style-5 input[type="submit"]:hover,
+		.form-style-5 input[type="button"]:hover {
+			background: #109177;
+		}
+		header {
+			display: flex;
+			align-content: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="form-style-5">
+		<amp-img src="/img/logo.svg" width="101" height="50" layout="fixed"><h1 placeholder>AMP</h1></amp-img>
 		<form class="email-form" name="email-form" action-xhr="/sendemail" method="GET">
-			<label>
-				<span>Type :</span>
-				<select name="type">
-					<option>hello</option>
-					<option>todo</option>
-				</select>
-			</label>
-			<label>
-					<span>Email :</span>
-				<input class="email" placeholder="...@..." name="email">
-			</label>
-			<button class="send-email" type="submit">Send</button>
 			<div submit-success>
 				<template type="amp-mustache">
-						Email {{type}} send to {{email}}
+					Email {{type}} send to {{email}}
 				</template>
 			</div>
 			<div submit-error>
@@ -59,6 +207,34 @@
 					Error send email {{type}} to {{email}}
 				</template>
 			</div>
+			<fieldset>
+				<legend><span class="number">1</span> Tester un email dynamique</legend>
+				<label for="type">Example :</label>
+				<select id="type" name="type">
+					<option>hello</option>
+					<option>todo</option>
+				</select>
+				<label for="email">Votre email :</label>
+				<input class="email" id="email" type="email" placeholder="...@..." name="email">
+			</fieldset>
+			<input type="submit" value="Envoyer" />
+			<fieldset>
+					<legend><span class="number">2</span> Comment activer les emails dynamique ?</legend>
+					<label>Ajouter l'email <pre>amp@todo.patou.dev</pre> dans les emails autorisés</label>
+					<amp-carousel type="slides" width="500" height="400" layout="intrinsic" lightbox>
+							<amp-img src="/img/screenshots/gmail1.png" width="500" height="400" layout="fill"
+								title="Dans les paramètres de gmail, onglet générale, cochez la case Activer la messagerie dynamique">
+							</amp-img>
+							<amp-img src="/img/screenshots/gmail2.png" width="500" height="400" layout="fill"
+								title="Le lien paramètres développeur permet de définir les emails autorisés">
+							</amp-img>
+							<amp-img src="/img/screenshots/outlook.png" width="500" height="400" layout="fill"
+								title="Sur Outlook.com, dans paramètre, puis autre paramètre et enfin Gestion des courriers, cochez la case Courrier dynamique, et ajouter les emails autorisés">
+							</amp-img>
+						</amp-carousel>
+			</fieldset>
 		</form>
-	</body>
+	</div>
+</body>
+
 </html>
