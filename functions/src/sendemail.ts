@@ -14,8 +14,9 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
     from: 'Todo Amp <amp@todo.patou.dev>',
     to: req.query.email,
     subject: 'Todo AMP',
-    text: 'Text version of the AMP-Email TodoMVC',
+    text: 'This is the Ttxt content. To see dynamic emails sent from amp@todo.patou.dev in Gmail, whitelist amp@todo.patou.dev in Gmail Settings > General > Dynamic email > Developer settings.',
     'amp-html': ampEmail(type),
+    html: 'This is the <b>HTML content</b>. To see dynamic emails sent from amp@todo.patou.dev in Gmail, whitelist amp@todo.patou.dev in Gmail Settings > General > Dynamic email > Developer settings.',
     'o:dkim': true,
   }
   await mg.messages().send(data);
