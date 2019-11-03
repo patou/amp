@@ -20,7 +20,7 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
     'o:dkim': true,
   }
   await mg.messages().send(data);
-  console.log(`Email sent to ${req.query.email}`);
+  console.log(`Email sent`);
   res.status(200).send({message: `Email sent to ${email}`, type, email});
 }
 export const sendEmail = functions.https.onRequest(onSendEmail);

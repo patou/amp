@@ -190,6 +190,28 @@
 			display: flex;
 			align-content: center;
 		}
+		.success, .error {
+			border-radius: 5px;
+			padding: 20px;
+			margin: 20px;
+			border-style: solid;
+			border-width: thin;
+		}
+		.success {
+			color: green;
+			background: #19bc9b17;
+			border-color: green;
+		}
+		.error {
+			color: red;
+			background: #ff000030;
+			border-color: red;
+		}
+		.rgpd {
+			font-style: italic;
+    	font-size: 0.8em;
+    	margin-top: AUTO;
+		}
 	</style>
 </head>
 
@@ -197,14 +219,14 @@
 	<div class="form-style-5">
 		<amp-img src="/img/logo.svg" width="101" height="50" layout="fixed"><h1 placeholder>AMP</h1></amp-img>
 		<form class="email-form" name="email-form" action-xhr="/sendemail" method="GET">
-			<div submit-success>
+			<div submit-success class="success">
 				<template type="amp-mustache">
-					Email {{type}} send to {{email}}
+					L'email dynamique {{type}} a été envoyé à {{email}}
 				</template>
 			</div>
-			<div submit-error>
+			<div submit-error class="error">
 				<template type="amp-mustache">
-					Error send email {{type}} to {{email}}
+						L'email dynamique {{type}} n'a pas été envoyé à {{email}}
 				</template>
 			</div>
 			<fieldset>
@@ -217,6 +239,7 @@
 				</select>
 				<label for="email">Votre email :</label>
 				<input class="email" id="email" type="email" placeholder="...@..." name="email">
+				<p class="rgpd">L'email n'est pas enregistré et est utilisé seulement pour vous envoyer le mail dynamique</p>
 			</fieldset>
 			<input type="submit" value="Envoyer" />
 			<fieldset>
@@ -236,6 +259,9 @@
 			</fieldset>
 		</form>
 	</div>
+	<footer>
+		<a href="https://github.com/patou/amp">Github</a> - <a href="/">TODO MVC</a>
+	</footer>
 </body>
 
 </html>

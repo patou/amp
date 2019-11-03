@@ -85,6 +85,6 @@ app.post('/todos/delete', async (req, res) => {
     res.status(204).send('ok');
 })
 app.post('/form/vote', async (req, res) => {
-    console.log(req.body);
+    console.log(`vote ${req.body.vote} with comment ${req.body.comment}`);
     res.status(200).send({...req.body})
 })
