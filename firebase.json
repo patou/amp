@@ -18,6 +18,11 @@
         "destination": "/index.html"
       }
     ],
+    "redirects": [ {
+      "source": "/slides",
+      "destination": "https://docs.google.com/presentation/d/1fOXyFDFC-qjj-6yFft6S7XHlt0fHSqYhBjPpkCbIN8Q/edit?usp=sharing",
+      "type": 301
+    }],
     "headers": [{
       "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css|jpg|jpeg|gif|png|svg)",
       "headers": [ {
