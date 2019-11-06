@@ -212,12 +212,35 @@
     	font-size: 0.8em;
     	margin-top: AUTO;
 		}
+		footer {
+			text-align: center;
+		}
+		nav {
+			margin-bottom: 20px;
+		}
+		nav a {
+				margin: 10px;
+				display: inline-block;
+				color: #FFF;
+				background: #1abc9c;
+				font-size: 14px;
+				text-align: center;
+				font-style: normal;
+				border: 1px solid #16a085;
+				border-width: 1px 1px 3px;
+				padding: 19px 39px 18px 39px;
+		}
 	</style>
 </head>
 
 <body>
 	<div class="form-style-5">
 		<amp-img src="/img/logo.svg" width="101" height="50" layout="fixed"><h1 placeholder>AMP</h1></amp-img>
+		<h1>Mon email devient dynamique !</h1>
+		<nav>
+				<a href="/todo.html">TODO AMP</a>
+				<a href="https://docs.google.com/presentation/d/1fOXyFDFC-qjj-6yFft6S7XHlt0fHSqYhBjPpkCbIN8Q/edit?usp=sharing">Slides</a>
+		</nav>
 		<form class="email-form" name="email-form" action-xhr="/sendemail" method="GET">
 			<div submit-success class="success">
 				<template type="amp-mustache">
@@ -258,10 +281,11 @@
 						</amp-carousel>
 			</fieldset>
 		</form>
+		<footer>
+				<a href="https://github.com/patou/amp">Github</a> - <a href="/todo.html">TODO AMP</a> - <a href="https://docs.google.com/presentation/d/1fOXyFDFC-qjj-6yFft6S7XHlt0fHSqYhBjPpkCbIN8Q/edit?usp=sharing">Slides</a>
+		</footer>
 	</div>
-	<footer>
-		<a href="https://github.com/patou/amp">Github</a> - <a href="/todo.html">TODO MVC</a>
-	</footer>
+
 </body>
 
 </html>
