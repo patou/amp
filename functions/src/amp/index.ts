@@ -1,7 +1,17 @@
-import { readFileSync } from 'fs'
 import { resolve } from 'path'
+import * as Sqrl from 'squirrelly'
 
+Sqrl.defaultTags(['${{', '}}'])
 
-export const ampEmail = (name:string) => {
-  return readFileSync(resolve(__dirname, name + '.amp.html'), 'utf-8')
+function getExt(type : string): string {
+  switch (type) {
+    case 'amp': return '.amp.html'
+    case 'html': return '.html'
+    case 'txt': return '.txt'
+  }
+  return ''
+}
+
+export const ampEmail = (name:string, type: string, options: any) => {
+  return Sqrl.renderFile(resolve(__dirname, name + getExt(type)), options)
 }

@@ -1,14 +1,8 @@
 <!doctype html>
-    <html ⚡4email>
+    <html>
     <head>
       <meta charset="utf-8">
-      <style amp4email-boilerplate>body{visibility:hidden}</style>
-      <script async src="https://cdn.ampproject.org/v0.js"></script>
-      <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
-      <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
-      <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
-      <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
-      <style amp-custom>
+      <style >
         /*
          * todomvc.css
          */
@@ -308,28 +302,18 @@
       <div class="container">
         <section class="todoapp">
             <div>
-              <header class="header"><h1><amp-img src="https://todo.patou.dev/img/checked.png"
+              <header class="header"><h1><img src="https://todo.patou.dev/img/checked.png"
                     width="40"
                     height="40"
                     alt="Checked"
-                    noloading>
-                      <div fallback class="todo-img">☑</div>
-                    </amp-img>todos</h1>
-              <form method="POST" id="newForm" action-xhr="https://todo.patou.dev/api/v1/todos" on="submit-success: newForm.clear, todoList.refresh">
+                    />todos</h1>
+              <form method="POST" id="newForm" action="https://todo.patou.dev/api/v1/todos" target="_blank">
                 <input class="new-todo" placeholder="What needs to be done?" name="title" autofocus="true">
               </form>
               </header>
           <section class="main">
               <label for="toggle-all"></label>
               <ul class="todo-list">
-                <amp-list
-                  id="todoList"
-                  width="auto"
-                  height="600"
-                  layout="fixed-height"
-                  items="."
-                  src="https://todo.patou.dev/api/v1/todos">
-                  <template type="amp-mustache">
                 <li
                   id="{{id}}-todo"
                   class="todo{{#completed}} completed{{/completed}}"
@@ -375,6 +359,7 @@
       </div>
 
       <footer class="info">
+        <p>Double-click to edit a todo</p>
         <p>Created by <a href="http://github.com/choumx/">choumx</a> and <a href="http://github.com/kristoferbaxter">kristoferbaxter</a></p>
         <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
       </footer>

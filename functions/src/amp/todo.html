@@ -1,14 +1,8 @@
 <!doctype html>
-    <html ⚡4email>
+    <html>
     <head>
       <meta charset="utf-8">
-      <style amp4email-boilerplate>body{visibility:hidden}</style>
-      <script async src="https://cdn.ampproject.org/v0.js"></script>
-      <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
-      <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
-      <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
-      <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
-      <style amp-custom>
+      <style type="text/css">
         /*
          * todomvc.css
          */
@@ -308,65 +302,38 @@
       <div class="container">
         <section class="todoapp">
             <div>
-              <header class="header"><h1><amp-img src="https://todo.patou.dev/img/checked.png"
+              <header class="header"><h1><img src="https://todo.patou.dev/img/checked.png"
                     width="40"
                     height="40"
                     alt="Checked"
-                    noloading>
-                      <div fallback class="todo-img">☑</div>
-                    </amp-img>todos</h1>
-              <form method="POST" id="newForm" action-xhr="https://todo.patou.dev/api/v1/todos" on="submit-success: newForm.clear, todoList.refresh">
+                    />todos</h1>
+              <form method="POST" id="newForm" action="https://todo.patou.dev/mail/todos" target="_blank">
                 <input class="new-todo" placeholder="What needs to be done?" name="title" autofocus="true">
               </form>
               </header>
           <section class="main">
               <label for="toggle-all"></label>
               <ul class="todo-list">
-                <amp-list
-                  id="todoList"
-                  width="auto"
-                  height="600"
-                  layout="fixed-height"
-                  items="."
-                  src="https://todo.patou.dev/api/v1/todos">
-                  <template type="amp-mustache">
+                ${{each(options.todos)}}
                 <li
-                  id="{{id}}-todo"
-                  class="todo{{#completed}} completed{{/completed}}"
+                  id="${{@this.id}}-todo"
+                  class="todo${{if(@this.completed}} completed${{/if}}"
                 >
                   <div class="view">
-                    {{^completed}}
-                    <form id="{{id}}-check" method="POST" action-xhr="https://todo.patou.dev/api/v1/todos/complete" on="submit-success: todoList.refresh">
-                      <input type="hidden" name="todoId" value="{{id}}"/>
-                      <button type="submit">
-                        <amp-img src="https://todo.patou.dev/img/check.png"
+                    ${{if(@this.completed}}
+                    <img src="https://todo.patou.dev/img/check.png"
                         width="40"
                         height="40"
-                        alt="Check"
-                        noloading>
-                          <div fallback class="todo-img"><input type="checkbox"/></div>
-                        </amp-img>
-                      </button>
-                    </form>
-                    {{/completed}}
-                    {{#completed}}
-                    <form id="{{id}}-cancel" method="POST" action-xhr="https://todo.patou.dev/api/v1/todos/cancel" on="submit-success: todoList.refresh">
-                      <input type="hidden" name="todoId" value="{{id}}"/>
-                      <button type="submit">
-                        <amp-img src="https://todo.patou.dev/img/checked.png"
+                        alt="Check"/>
+                    ${{#else}}
+                    <img src="https://todo.patou.dev/img/checked.png"
                         width="40"
                         height="40"
-                        alt="Checked"
-                        noloading>
-                          <div fallback class="todo-img"><input type="checkbox" checked="checked"/></div>
-                        </amp-img>
-                      </button>
-                      </form>
-                    {{/completed}}
-                    <label>{{title}}</label>
+                        alt="Checked"/>
+                    ${{/if}}
+                    <label>${{@this.title}}</label>
                 </li>
-                  </template>
-               </amp-list>
+              ${{/each}}
               </ul>
             </section>
           </div>
@@ -375,6 +342,7 @@
       </div>
 
       <footer class="info">
+        <p>Double-click to edit a todo</p>
         <p>Created by <a href="http://github.com/choumx/">choumx</a> and <a href="http://github.com/kristoferbaxter">kristoferbaxter</a></p>
         <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
       </footer>

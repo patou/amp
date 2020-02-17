@@ -1,0 +1,8 @@
+
+Hello,
+
+My todo list :
+${{each(options.todos)}}- [${{if(@this.completed}}x${{/if}}] ${{@this.title}}</label>${{/each}}
+
+
+https://todo.patou.dev/todos.html
