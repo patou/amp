@@ -1,18 +1,9 @@
 <!doctype html>
-<html ⚡4email>
+<html>
 
 <head>
   <meta charset="utf-8">
-  <style amp4email-boilerplate>
-    body {
-      visibility: hidden
-    }
-  </style>
-  <script async src="https://cdn.ampproject.org/v0.js"></script>
-  <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
-  <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
-  <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
-  <style amp-custom>
+  <style type="text/css">
     body {
       background: #eceff1;
       color: rgba(0, 0, 0, 0.87);
@@ -139,12 +130,11 @@ button {
 </head>
 
 <body>
-  <form id="homePage" class="page" action-xhr="https://todo.patou.dev/api/v1/form/vote" method="POST">
+  <form id="homePage" class="page" action="https://humeur-du-mois.zenika.com/" method="POST">
     <h1 class="page__title">
       <span>Welcome, <span id="userId">${{email}}</span></span>
     </h1>
     <h2>How have you been at Zenika?</h2>
-    <amp-selector class="button__wrapper" name="vote">
       <button class="button--big button--great" type="button" id="submitGreat" option="great">
         <span class="button__emoji">😁</span> Great!
       </button>
@@ -154,18 +144,8 @@ button {
       <button class="button--big button--not-great-at-all" type="button" id="submitNotGreatAtAll" option="not-great-at-all">
         <span class="button__emoji">😤</span> Not great at all
       </button>
-    </amp-selector>
     <h2>A little comment?</h2>
     <textarea class="textarea" id="comment" name="comment" rows="4"></textarea>
-    <div id="managerNotice" class="managerNotice">
-      The result will be sent to <span id="managerName">manager@zenika.com</span>
-    </div>
-    <div id="errorDisplay" class="errorDisplay" submit-error>
-      Error to send vote
-    </div>
-    <div id="successDisplay" class="successDisplay" submit-success>
-        Your answer was properly recorded.
-      </div>
     <div class="button-vote-wrapper">
       <button id="buttonVote" type="submit" class="button--small">
         Vote
