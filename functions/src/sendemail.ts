@@ -3,9 +3,9 @@ import * as mailgun from 'mailgun-js';
 import { ampEmail } from './amp';
 
 const config = functions.config().mailgun;
-const options: mailgun.ConstructorParams = config ? {apiKey: functions.config().mailgun.key || 'demo', domain: 'todo.patou.dev', host: "api.eu.mailgun.net"}
+const mailgunOptions: mailgun.ConstructorParams = config ? {apiKey: functions.config().mailgun.key || 'demo', domain: 'todo.patou.dev', host: "api.eu.mailgun.net"}
 : { apiKey: 'demo', testMode: true , domain: 'todo.patou.dev', host: "api.eu.mailgun.net"};
-const mg = mailgun(options);
+const mg = mailgun(mailgunOptions);
 async function getOptions(type: string, email: string): Promise<any> {
   if (type ==='todo') {
       return {
