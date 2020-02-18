@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import * as Sqrl from 'squirrelly'
 
-Sqrl.defaultTags(['${{', '}}'])
+Sqrl.defaultTags(['<%', '%>'])
 
 function getExt(type : string): string {
   switch (type) {

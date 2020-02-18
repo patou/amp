@@ -141,7 +141,7 @@ button {
 <body>
   <form id="homePage" class="page" action-xhr="https://todo.patou.dev/api/v1/form/vote" method="POST">
     <h1 class="page__title">
-      <span>Welcome, <span id="userId">${{email}}</span></span>
+      <span>Welcome, <span id="userId"><%email%></span></span>
     </h1>
     <h2>How have you been at Zenika?</h2>
     <amp-selector class="button__wrapper" name="vote">

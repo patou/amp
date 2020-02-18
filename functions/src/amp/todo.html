@@ -128,7 +128,7 @@
         .toggle-all:checked:before {
           color: #737373;
         }
-        .todo-list ul {
+        ul.todo-list {
           margin: 0;
           padding: 0;
           list-style: none;
@@ -314,26 +314,26 @@
           <section class="main">
               <label for="toggle-all"></label>
               <ul class="todo-list">
-                ${{each(options.todos)}}
+                <%each(options.todos)%>
                 <li
-                  id="${{@this.id}}-todo"
-                  class="todo${{if(@this.completed}} completed${{/if}}"
+                  id="<%@this.id%>-todo"
+                  class="todo<%if(@this.completed)%> completed<%/if%>"
                 >
                   <div class="view">
-                    ${{if(@this.completed}}
+                    <%if(@this.completed)%>
                     <img src="https://todo.patou.dev/img/check.png"
                         width="40"
                         height="40"
                         alt="Check"/>
-                    ${{#else}}
+                    <%#else%>
                     <img src="https://todo.patou.dev/img/checked.png"
                         width="40"
                         height="40"
                         alt="Checked"/>
-                    ${{/if}}
-                    <label>${{@this.title}}</label>
+                    <%/if%>
+                    <label><%@this.title%></label>
                 </li>
-              ${{/each}}
+              <%/each%>
               </ul>
             </section>
           </div>

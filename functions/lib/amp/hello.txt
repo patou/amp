@@ -1,1 +1,1 @@
-Hello word ${{email}} from TEXT
+Hello word <%email%> from TEXT

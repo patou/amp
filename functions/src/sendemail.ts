@@ -40,8 +40,21 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
     html: ampEmail(type, 'html', options),
     'o:dkim': true,
   }
+  console.log(data)
   await mg.messages().send(data);
   console.log(`Email sent`);
   res.status(200).send({message: `Email sent to ${email}`, type, email});
 }
 export const sendEmail = functions.https.onRequest(onSendEmail);
+
+async function onTestEmail(req: functions.Request, res: functions.Response) {
+  const type = req.query.type || 'todo'
+  const format = req.query.format || 'html'
+  const email = req.query.email || 'patoudss.amp@gmail.com'
+  const options = await getOptions(type, email);
+  console.log(options)
+  const ret = ampEmail(type, format, options);
+  res.status(200).send(ret);
+}
+
+export const testEmail = functions.https.onRequest(onTestEmail);
