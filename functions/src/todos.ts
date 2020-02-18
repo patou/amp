@@ -12,5 +12,5 @@ export async function getTodos() {
   for (k in obj) {
       (obj[k].id=k) && todos.push(obj[k]);
   }
-  return datas
+  return todos
 }
