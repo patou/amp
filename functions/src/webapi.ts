@@ -1,9 +1,9 @@
 import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
 import * as express from 'express';
 import * as bodyParser from "body-parser";
 import * as ampCors from '@ampproject/toolbox-cors';
-admin.initializeApp(functions.config().firebase);
+import { db, getTodos } from './todos'
+
 const app = express();
 const main = express();
 
@@ -16,8 +16,6 @@ main.use('/api/v1', app);
 // webApi is your functions name, and you will pass main as
 // a parameter
 export const webApi = functions.https.onRequest(main);
-
-const db = admin.database().ref('todos')
 
 //In this file, we also create CRUD route for the API
 // Add new todo
@@ -66,12 +64,7 @@ app.get('/todos/:todoId', async (req, res) => {
 })
 // View all todos
 app.get('/todos', async (req, res) => {
-    const datas = await db.once('value')
-    let k;
-    const todos = [], obj = datas.val();
-    for (k in obj) {
-        (obj[k].id=k) && todos.push(obj[k]);
-    }
+    const todos = await getTodos()
     res.status(200).send(todos)
 })
 // Delete a todo

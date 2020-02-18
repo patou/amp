@@ -1,30 +1,30 @@
 import * as functions from 'firebase-functions';
 import * as mailgun from 'mailgun-js';
 import { ampEmail } from './amp';
+import { getTodos } from './todos';
 
 const config = functions.config().mailgun;
 const mailgunOptions: mailgun.ConstructorParams = config ? {apiKey: functions.config().mailgun.key || 'demo', domain: 'todo.patou.dev', host: "api.eu.mailgun.net"}
 : { apiKey: 'demo', testMode: true , domain: 'todo.patou.dev', host: "api.eu.mailgun.net"};
 const mg = mailgun(mailgunOptions);
 async function getOptions(type: string, email: string): Promise<any> {
-  if (type ==='todo') {
+  if (type === 'todo') {
+      const todos = await getTodos()
       return {
         email,
-        todos: [
-          {
-          "completed": false,
-          "title": "Projet firebase 2",
-          "id": "-Lo2R30njrYZSVWD6-_W"
-          },
-          {
-          "completed": true,
-          "title": "Test AMP Email",
-          "id": "-LpTnXHGYoDDU8rZOUKv"
-          },
-        ]
+        todos
       }
   }
   return { email }
+}
+
+function getSubject(type){
+  switch (type) {
+    case 'toto': return "My todo list for AMP";
+    case 'hello': return "Hello from AMP";
+    case 'humeur': return "How have you been at Zenika?";
+  }
+  return `${type} AMP`
 }
 
 async function onSendEmail(req: functions.Request, res: functions.Response) {
@@ -32,9 +32,9 @@ async function onSendEmail(req: functions.Request, res: functions.Response) {
   const email = req.query.email || 'patoudss.amp@gmail.com'
   const options = await getOptions(type, email);
   const data : mailgun.messages.SendData = {
-    from: 'Todo Amp <amp@todo.patou.dev>',
+    from: 'Patou Amp <amp@todo.patou.dev>',
     to: req.query.email,
-    subject: `${type} AMP`,
+    subject: getSubject(type),
     text: ampEmail(type, 'txt', options),
     'amp-html': ampEmail(type, 'amp', options),
     html: ampEmail(type, 'html', options),
