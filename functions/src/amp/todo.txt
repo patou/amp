@@ -3,8 +3,8 @@ Hello,
 
 My todo list :
 <%each(options.todos)%>
-- [<%if(@this.completed)%>x<%/if%>] <%@this.title%></label>
+- [<%if(@this.completed)%>x<%#else%> <%/if%>] <%@this.title%>
 <%/each%>
 
-
+See and edit the list on :
 https://todo.patou.dev/todos.html
