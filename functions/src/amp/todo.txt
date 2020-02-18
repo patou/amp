@@ -7,4 +7,4 @@ My todo list :
 <%/each%>
 
 See and edit the list on :
-https://todo.patou.dev/todos.html
+https://todo.patou.dev/todo.html
