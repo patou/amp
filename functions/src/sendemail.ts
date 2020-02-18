@@ -18,7 +18,7 @@ async function getOptions(type: string, email: string): Promise<any> {
   return { email }
 }
 
-function getSubject(type){
+function getSubject(type:string):string{
   switch (type) {
     case 'toto': return "My todo list for AMP";
     case 'hello': return "Hello from AMP";
